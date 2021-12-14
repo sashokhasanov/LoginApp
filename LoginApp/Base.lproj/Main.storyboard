@@ -70,6 +70,51 @@
             </objects>
             <point key="canvasLocation" x="132" y="100"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="XOQ-XS-5ez">
+            <objects>
+                <viewController id="ULk-3j-dLa" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="jpW-TC-pZz">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="4AS-h0-gU6">
+                                <rect key="frame" x="104.5" y="231.5" width="111" height="105"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome, " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zmC-PS-6jZ">
+                                        <rect key="frame" x="0.0" y="0.0" width="111" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="👋" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2iA-EV-eaE">
+                                        <rect key="frame" x="0.0" y="45" width="111" height="60"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="50"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TzR-Od-LT6">
+                                <rect key="frame" x="123.5" y="507" width="73" height="31"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Log out"/>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="huu-xw-6kM"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="4AS-h0-gU6" firstAttribute="centerX" secondItem="jpW-TC-pZz" secondAttribute="centerX" id="8Uk-aC-te0"/>
+                            <constraint firstItem="huu-xw-6kM" firstAttribute="bottom" secondItem="TzR-Od-LT6" secondAttribute="bottom" constant="30" id="Wys-pW-vFV"/>
+                            <constraint firstItem="TzR-Od-LT6" firstAttribute="centerX" secondItem="jpW-TC-pZz" secondAttribute="centerX" id="ucU-Wb-FLH"/>
+                            <constraint firstItem="4AS-h0-gU6" firstAttribute="centerY" secondItem="jpW-TC-pZz" secondAttribute="centerY" id="zKQ-DE-eFl"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kTs-cC-FZA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="951" y="99"/>
+        </scene>
     </scenes>
     <resources>
         <systemColor name="systemBackgroundColor">
