@@ -22,12 +22,14 @@ class LoginViewController: UIViewController {
         }
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        view.endEditing(true)
+    }
+    
+    
     @IBAction func loginButtonPressed() {
-        if (checkLoginAndPassword()) {
-            performSegue(withIdentifier: "loginSegue", sender: self)
-        } else {
-            showAlert(title: "Oops 😥", message: "invalid login or password")
-        }
+        processLogin()
     }
     
     @IBAction func unwindLoginSegue(_ segue: UIStoryboardSegue) {
@@ -36,11 +38,19 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func forgotLoginpressed() {
-        showAlert(title: "🦄", message: "username is \(login)")
+        showAlert(title: "🦄", message: "username is \"\(login)\"")
     }
     
     @IBAction func forgotPasswordPressed() {
-        showAlert(title: "🦄", message: "password is \(password)")
+        showAlert(title: "🦄", message: "password is \"\(password)\"")
+    }
+    
+    private func processLogin() {
+        if (checkLoginAndPassword()) {
+            performSegue(withIdentifier: "loginSegue", sender: self)
+        } else {
+            showAlert(title: "Oops 😥", message: "invalid login or password")
+        }
     }
     
     private func checkLoginAndPassword() -> Bool {
@@ -54,6 +64,23 @@ class LoginViewController: UIViewController {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alertController.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
         present(alertController, animated: true, completion: nil)
+    }
+}
+
+extension LoginViewController : UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        switch textField {
+        case loginTextField:
+            passwordTextField.becomeFirstResponder()
+        case passwordTextField:
+            passwordTextField.resignFirstResponder()
+            processLogin()
+        default:
+            break
+        }
+
+        return true
     }
 }
 
