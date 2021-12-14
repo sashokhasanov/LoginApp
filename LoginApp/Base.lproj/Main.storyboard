@@ -11,7 +11,7 @@
         <!--Login View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="LoginViewController" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="LoginViewController" customModule="LoginApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -35,6 +35,9 @@
                                         <buttonConfiguration key="configuration" style="plain" title="Log In">
                                             <fontDescription key="titleFontDescription" type="system" pointSize="18"/>
                                         </buttonConfiguration>
+                                        <connections>
+                                            <action selector="loginButtonPressed" destination="BYZ-38-t0r" eventType="touchUpInside" id="fnI-9R-Yyl"/>
+                                        </connections>
                                     </button>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="uhu-Ob-Qk8">
                                         <rect key="frame" x="0.0" y="148.5" width="265" height="28.5"/>
@@ -45,6 +48,9 @@
                                                 <buttonConfiguration key="configuration" style="plain" title="Forgot user name?">
                                                     <fontDescription key="titleFontDescription" type="system" pointSize="12"/>
                                                 </buttonConfiguration>
+                                                <connections>
+                                                    <action selector="forgotLoginpressed" destination="BYZ-38-t0r" eventType="touchUpInside" id="hnz-rr-hiS"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yqz-vD-Enk">
                                                 <rect key="frame" x="135" y="0.0" width="130" height="28.5"/>
@@ -52,6 +58,9 @@
                                                 <buttonConfiguration key="configuration" style="plain" title="Forgot password?">
                                                     <fontDescription key="titleFontDescription" type="system" pointSize="12"/>
                                                 </buttonConfiguration>
+                                                <connections>
+                                                    <action selector="forgotPasswordPressed" destination="BYZ-38-t0r" eventType="touchUpInside" id="4OT-jI-yVq"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -65,15 +74,20 @@
                             <constraint firstItem="ZMt-zC-A1I" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="HhP-mV-8sA"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="loginTextField" destination="pC6-vy-NMH" id="MO6-eA-pMk"/>
+                        <outlet property="passwordTextField" destination="Guk-1i-boG" id="9f1-H3-bS8"/>
+                        <segue destination="ULk-3j-dLa" kind="presentation" identifier="loginSegue" modalPresentationStyle="fullScreen" id="NGF-RS-U4o"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="132" y="100"/>
         </scene>
-        <!--View Controller-->
+        <!--Welcome View Controller-->
         <scene sceneID="XOQ-XS-5ez">
             <objects>
-                <viewController id="ULk-3j-dLa" sceneMemberID="viewController">
+                <viewController id="ULk-3j-dLa" customClass="WelcomeViewController" customModule="LoginApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="jpW-TC-pZz">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -99,6 +113,9 @@
                                 <rect key="frame" x="123.5" y="507" width="73" height="31"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Log out"/>
+                                <connections>
+                                    <segue destination="0gs-22-UDL" kind="unwind" unwindAction="unwindLoginSegue:" id="Wzn-MF-bQG"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="huu-xw-6kM"/>
@@ -110,8 +127,12 @@
                             <constraint firstItem="4AS-h0-gU6" firstAttribute="centerY" secondItem="jpW-TC-pZz" secondAttribute="centerY" id="zKQ-DE-eFl"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="welcomeLabel" destination="zmC-PS-6jZ" id="2K2-lY-sDB"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kTs-cC-FZA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="0gs-22-UDL" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="951" y="99"/>
         </scene>
