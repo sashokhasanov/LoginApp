@@ -106,6 +106,10 @@ extension LoginViewController {
                                        object: nil)
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
     @objc func adjustForKeyboard(notification: Notification) {
         guard let userInfo = notification.userInfo,
               let keyboardValue = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue,
