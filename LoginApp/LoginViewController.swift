@@ -15,6 +15,7 @@ class LoginViewController: UIViewController {
     private let login = "Happy"
     private let password = "123"
     
+// MARK: - Override methods
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "loginSegue") {
             let welocmeController = segue.destination as! WelcomeViewController
@@ -27,7 +28,7 @@ class LoginViewController: UIViewController {
         view.endEditing(true)
     }
     
-    
+// MARK: - IBAction
     @IBAction func loginButtonPressed() {
         processLogin()
     }
@@ -38,18 +39,19 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func forgotLoginpressed() {
-        showAlert(title: "🦄", message: "username is \"\(login)\"")
+        showAlert(title: "Hint 🦄", message: "username is \"\(login)\"")
     }
     
     @IBAction func forgotPasswordPressed() {
-        showAlert(title: "🦄", message: "password is \"\(password)\"")
+        showAlert(title: "Hint 🦄", message: "password is \"\(password)\"")
     }
     
+// MARK: - Private methods
     private func processLogin() {
         if (checkLoginAndPassword()) {
             performSegue(withIdentifier: "loginSegue", sender: self)
         } else {
-            showAlert(title: "Oops 😥", message: "invalid login or password")
+            showAlert(title: "Ooops 😥", message: "invalid login or password")
         }
     }
     
@@ -62,11 +64,13 @@ class LoginViewController: UIViewController {
     
     private func showAlert(title: String, message: String) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alertController.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-        present(alertController, animated: true, completion: nil)
+        let alertAction = UIAlertAction(title: "OK", style: .default)
+        alertController.addAction(alertAction)
+        present(alertController, animated: true)
     }
 }
 
+// MARK: - Text field delegate
 extension LoginViewController : UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -84,3 +88,39 @@ extension LoginViewController : UITextFieldDelegate {
     }
 }
 
+// MARK: - Resizing safe area on keyboard show/hide
+extension LoginViewController {
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        let notificationCenter = NotificationCenter.default
+        notificationCenter.addObserver(self,
+                                       selector: #selector(adjustForKeyboard),
+                                       name: UIResponder.keyboardWillHideNotification,
+                                       object: nil)
+        
+        notificationCenter.addObserver(self,
+                                       selector: #selector(adjustForKeyboard),
+                                       name: UIResponder.keyboardWillChangeFrameNotification,
+                                       object: nil)
+    }
+    
+    @objc func adjustForKeyboard(notification: Notification) {
+        guard let userInfo = notification.userInfo,
+              let keyboardValue = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue,
+              let keyboardAnimationDuration = userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as? NSNumber
+        else { return }
+        
+        let keyboardScreenEndFrame = keyboardValue.cgRectValue
+        let keyboardViewEndFrame = view.convert(keyboardScreenEndFrame, from: view.window)
+
+        if notification.name == UIResponder.keyboardWillHideNotification {
+            additionalSafeAreaInsets = .zero
+        } else {
+            additionalSafeAreaInsets = UIEdgeInsets(top: 0, left: 0, bottom: keyboardViewEndFrame.height, right: 0)
+        }
+        
+        UIView.animate(withDuration: keyboardAnimationDuration.doubleValue) { self.view.layoutIfNeeded() }
+    }
+}

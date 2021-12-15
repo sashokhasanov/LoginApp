@@ -80,8 +80,8 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="ZMt-zC-A1I" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="H15-bA-nof"/>
-                            <constraint firstItem="ZMt-zC-A1I" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="HhP-mV-8sA"/>
+                            <constraint firstItem="ZMt-zC-A1I" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="H15-bA-nof"/>
+                            <constraint firstItem="ZMt-zC-A1I" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="HhP-mV-8sA"/>
                         </constraints>
                     </view>
                     <connections>
