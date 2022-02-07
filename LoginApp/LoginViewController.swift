@@ -87,9 +87,7 @@ extension LoginViewController : UITextFieldDelegate {
 // MARK: - Resizing safe area on keyboard show/hide
 extension LoginViewController {
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
+    override func viewWillAppear(_ animated: Bool) {
         let notificationCenter = NotificationCenter.default
         notificationCenter.addObserver(self,
                                        selector: #selector(adjustForKeyboard),
